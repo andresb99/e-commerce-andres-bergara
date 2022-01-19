@@ -45,7 +45,7 @@ const ResponsiveAppBar = () => {
     <AppBar position="sticky" style={{backgroundColor:"black"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <img src={logo} className="logo-react" />
+        <img src={logo} alt='logo' className="logo-react" />
           <Typography
             variant="h5"
             noWrap
