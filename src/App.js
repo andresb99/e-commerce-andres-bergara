@@ -1,5 +1,5 @@
+//import styles
 import './App.css';
-
 
 //import components
 import NavBar from './components/navbar/NavBar'
