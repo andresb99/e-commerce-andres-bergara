@@ -13,16 +13,19 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 
+//import components
+import CartWidget from '../cart-widget/CartWidget';
+
 //styles
 import './navbar.css';
 import logo from './icons/logoheisenberg.svg'
 import profileImg from './icons/gatito.jpg'
 
-
 const pages = ['Products', 'Games Reviews', 'Blog'];
-const settings = ['Profile', 'Account', 'Cart', 'Logout'];
+const pagesResponsive = [...pages, 'Cart'];
+const settings = ['Profile', 'Account', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -45,7 +48,7 @@ const ResponsiveAppBar = () => {
     <AppBar position="sticky" style={{backgroundColor:"black"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <img src={logo} alt='logo' className="logo-react" />
+        <img src={logo} alt='logo' className="logo" />
           <Typography
             variant="h5"
             noWrap
@@ -85,7 +88,7 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {pagesResponsive.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -114,6 +117,9 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            <IconButton sx={{ display: { xs: 'none', md: 'inline-block' }, marginRight:{md: 5}}} >
+              <CartWidget  />
+            </IconButton>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Gatito" src={profileImg} />
@@ -148,4 +154,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default NavBar;
