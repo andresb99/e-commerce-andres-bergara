@@ -46,7 +46,7 @@ const NavBar = () => {
 
   return (
     <AppBar position="sticky" style={{backgroundColor:"black"}}>
-      <Container maxWidth="xl">
+      <Container maxWidth="none">
         <Toolbar disableGutters>
         <img src={logo} alt='logo' className="logo" />
           <Typography

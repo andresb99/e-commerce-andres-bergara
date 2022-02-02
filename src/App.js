@@ -9,7 +9,7 @@ function App() {
   return (
     <div >
       <NavBar/>
-      <ItemListContainer greetings = {{greeting : 'Hello World! this is the ', name : 'Item List Container'}}/>
+      <ItemListContainer greetings = {{greeting : 'Hello World! welcome to ', name : 'Games List'}}/>
     </div>
   );
 }

@@ -1,30 +1,40 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
+import React, { useState, useEffect } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 //import components
-import ItemCount from '../itemCount/ItemCount'
+import ItemList from '../item-list/ItemList';
+import { getMock } from '../../products/mock'
 
 //import styles
 import './itemListContainer.css';
 
+
 const ItemListContainer = (props) => {
+  
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+      getMock
+          .then(res => setData(res))
+          .catch(err => console.log(err))
+          .finally(() => setLoading(false))
+
+  }, [])
+  
+  
   return <>
+        <div style={{ textAlign: 'center' }}>
 
-          <h1>{props.greetings.greeting}<span>{props.greetings.name}</span></h1>
-
-          <Grid container spacing={0}>
-            <Grid item xs={12} sm={6} md={4}>
-              <ItemCount stock={10} initial={1} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <ItemCount stock={1} initial={1} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-            <ItemCount stock={0} initial={1} />
-            </Grid>
-          </Grid>
-            
-  </>;
+                <h1>{ props.greetings.greeting }<span>{ props.greetings.name }</span></h1>
+          
+                {
+                  loading ? <CircularProgress/> : <ItemList products={data} />
+                }   
+                
+        </div>                
+  </>;  
 };
 
 export default ItemListContainer;
