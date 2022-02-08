@@ -22,8 +22,8 @@ const ItemListContainer = (props) => {
           .finally(() => setLoading(false))
 
   }, [])
-  
-  
+
+
   return <>
         <div style={{ textAlign: 'center' }}>
 

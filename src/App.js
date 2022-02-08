@@ -2,14 +2,12 @@
 import './App.css';
 
 //import components
-import NavBar from './components/navbar/NavBar'
-import ItemListContainer from './components/itemListContainer/ItemListContainer';
+import Router from './router/Router'
 
 function App() {
   return (
     <div >
-      <NavBar/>
-      <ItemListContainer greetings = {{greeting : 'Hello World! welcome to ', name : 'Games List'}}/>
+      <Router/>
     </div>
   );
 }

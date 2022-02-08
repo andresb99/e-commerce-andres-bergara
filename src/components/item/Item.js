@@ -8,37 +8,41 @@ import Button from '@mui/material/Button';
 
 // import components 
 import ItemCount from '../itemCount/ItemCount';
+import { Link } from 'react-router-dom';
 
 
 
 
 const Item = ({ product }) => {
 
-    const { pictureUrl, description, title, stock } = product;
+    const { pictureUrl, description, title, stock, id } = product;
 
     return (
         <Card sx={{ width: 350, margin:{xs:'0 auto'}}}>
-          <CardActionArea sx= {{height: '450px', overflow: 'hidden'}}>
-            <CardMedia
-              component="img"
-              height="280"
-              image={ pictureUrl }
-              alt={ title }
-            />
-            <CardContent>
-              <Typography sx={{fontWeight:'bold'}} gutterBottom variant="h5" component="div">
-                { title }  
-                { 
-                  stock === 0 ? 
-                  <Typography variant="body2" color="error.main">OUT OF STOCK</Typography> : 
-                  <Typography variant="body2" color="success.main">STOCK: {stock}</Typography>
-                }
-              </Typography>
-              <Typography sx ={{textAlign:'left'}}  variant="body2" color="text.secondary">
-                { description }
-              </Typography>      
-            </CardContent>
-          </CardActionArea>
+          <Link style={{textDecoration:'none'}} to={`/products/${id}`}>
+            <CardActionArea sx= {{height: '350px', overflow: 'hidden'}}>
+              <CardMedia
+                component="img"
+                height="197"
+                image={ pictureUrl }
+                alt={ title }
+              />
+              <CardContent>
+                <Typography sx={{fontWeight:'bold', color:'black'}} gutterBottom variant="h5" component="div">
+                  { title }  
+                  { 
+                    stock === 0 ? 
+                    <Typography variant="body2" color="error.main">OUT OF STOCK</Typography> : 
+                    <Typography variant="body2" color="success.main">STOCK: {stock}</Typography>
+                  }
+                </Typography>
+                <Typography sx ={{textAlign:'left'}}  variant="body2" color="text.secondary">
+                  { description }
+                </Typography>      
+              </CardContent>
+            </CardActionArea>
+          </Link>
+          
           <ItemCount stock={stock} initial={stock === 0 ? 0 : 1 } />
           <Button sx = {{ 
             display:'block', 

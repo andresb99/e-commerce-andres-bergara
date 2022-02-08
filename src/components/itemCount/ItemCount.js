@@ -23,7 +23,7 @@ const ItemCount = (prop) => {
         <Stack sx={{justifyContent:'center', marginTop: '20px'}} direction="row" spacing={2}>
             <Button onClick={remove} variant="outlined" disabled={(prop.stock === 0) || (counter === 0)}>-</Button>
             <span className="counter">{counter}</span>
-            <Button onClick={onAdd} variant="outlined" disabled={(prop.stock === 0) || (counter === prop.stock)}>+</Button>
+            <Button onClick={onAdd} variant="outlined" disabled={(prop.stock === 0) || (counter >= prop.stock)}>+</Button>
         </Stack>
     </>;
     };
