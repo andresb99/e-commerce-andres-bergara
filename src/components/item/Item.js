@@ -10,9 +10,6 @@ import { CardActionArea } from '@mui/material';
 import ItemCount from '../itemCount/ItemCount';
 import { Link } from 'react-router-dom';
 
-
-
-
 const Item = ({ product }) => {
 
   const { pictureUrl, description, title, stock, id } = product;

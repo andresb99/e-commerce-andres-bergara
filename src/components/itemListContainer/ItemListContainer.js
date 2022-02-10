@@ -17,8 +17,6 @@ const ItemListContainer = (props) => {
   const [loading, setLoading] = useState(true)
   const { id } = useParams();
 
-  
-
   useEffect(() => {
       getMock
           .then( res => setData(res.filter( (product) => id ? product.category === id : product )))
@@ -26,7 +24,6 @@ const ItemListContainer = (props) => {
           .finally( () => setLoading(false) )       
   }, [id])
 
-console.log(id)
   return <>
         <div style={{ textAlign: 'center' }}>
           
