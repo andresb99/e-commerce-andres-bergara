@@ -91,9 +91,15 @@ const NavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <Link style={{textDecoration:'none'}} to='/products' >
+              <Link style={{textDecoration:'none'}} to='/category/videogames' >
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography  color='black'  textAlign="center">Products</Typography>
+                  <Typography  color='black'  textAlign="center">Games</Typography>
+                </MenuItem>
+              </Link>
+
+              <Link style={{textDecoration:'none'}} to='/category/peripherals' >
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography  color='black'  textAlign="center">Peripherals</Typography>
                 </MenuItem>
               </Link>
 
