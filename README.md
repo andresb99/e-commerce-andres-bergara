@@ -15,16 +15,22 @@ o por el contrario puede seleccionar un producto desde el home page.
 Al iniciar la aplicación con el comando : npm start, se podra visualizar el home page, el cual tendra todos los
 items de la tienda y el NavBar.
 
+
+### Item Detail
+Al hacer click en un Item, se redireccionara a los detalles de dicho item, donde podras
+ver mas información del mismo, ademas de poder comprar la cantidad deseada de dicho producto.
+
+
 ### NavBar
 En cualquier sección de la página se podra visualizar el NavBar, el cual dispone de : 
 
--Brand, el cual al hacer click te redirecciona al home page
--Games, el cual al hacer click filtra los productos con categoria "videogames"
--Peripherals, el cual al hacer click filtra los productos con categoria "peripherals"
--Games reviews, el cual no tiene una funcionalidad creada aun
--blog, el cual no tiene una funcionalidad creada aun
+- Brand, el cual al hacer click te redirecciona al home page
+- Games, el cual al hacer click filtra los productos con categoria "videogames"
+- Peripherals, el cual al hacer click filtra los productos con categoria "peripherals"
+- Games reviews, el cual no tiene una funcionalidad creada aun
+- blog, el cual no tiene una funcionalidad creada aun
 
-A la derecha del NavBar se puede observar un icono con la imagen de perfil del usuario(por el momento es una imagen por defecto),
+A la derecha en el NavBar se puede observar un icono con la imagen de perfil del usuario(por el momento es una imagen por defecto),
 al hacer click en la imagen se desplegara un menu de opciones el cual aun no tiene una funcionalidad creada.
 
 
