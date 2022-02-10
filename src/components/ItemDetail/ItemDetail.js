@@ -1,9 +1,13 @@
-import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import { Box, Card, CardContent, Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import Item from '../item/Item';
 
 //import components
 import ItemCount from '../itemCount/ItemCount';
+
+//import styles
+import './itemDetail.css';
+
 
 const ItemDetail = ({ product, idParam }) => {
 
@@ -15,19 +19,19 @@ const ItemDetail = ({ product, idParam }) => {
     })
 
   return <>
-    <Container sx={{ mt: 10}}>
+    <Container sx={{ mt: 10, mb: 10 }}>
         <Grid container spacing={2}>
 
             <Grid item xs={12} sm={8}>
-                <Box><img style={{width: '100%'}} src={pictureUrl} alt={ title } /></Box>
+                <Box><img className='productImg' src={pictureUrl} alt={ title } /></Box>
             </Grid>
 
             <Grid item xs={12} sm={4}>
                 <Box>
-                    <Card sx={{ minWidth: 275, height: 429 }}>
+                    <Card sx={{ minWidth: 275, height: 429, backgroundColor:'black', color:'white' }}>
                         <CardContent>
-                            <Typography variant="h5" component="div">
-                                {title}
+                            <Typography color='white' variant="h5" component="div">
+                                { title }
                             </Typography>
                             { 
                                 stock === 0 ? 
@@ -35,25 +39,15 @@ const ItemDetail = ({ product, idParam }) => {
                                 <Typography variant="body2" color="success.main">STOCK: {stock}</Typography>
                             }
 
-                            <Typography variant="h4" component="div">
-                                ${price}
+                            <Typography variant="h4" color='white' component="div">
+                                ${ price }
                             </Typography>
-                            <Typography variant="body2">
-                                {description}
-                            <br />
-                            
+                            <Typography color='white' variant="body2">
+                                { description }<br />
                             </Typography>
                         </CardContent>
-                        <ItemCount stock={stock} initial={stock === 0 ? 0 : 1 } />
-                        <Button sx = {{ 
-                        display:'block', 
-                        margin:'0 auto', 
-                        width:'85%', 
-                        mt: 2, mb: 2 }} 
-                        variant="outlined" 
-                        disabled={ stock === 0 }>
-                            Add to cart
-                        </Button>
+                        <ItemCount color='white' stock={ stock } initial={ stock === 0 ? 0 : 1 } />
+
                     </Card>
                 </Box>  
             </Grid>

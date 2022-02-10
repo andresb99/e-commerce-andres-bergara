@@ -18,13 +18,38 @@ const ItemCount = (prop) => {
             setCounter(counter-1);
     }
 
+    const stylesCounter = {
+        border:'1px solid white',
+        color:'white',
+        "&:hover": {
+            opacity: 0.8,
+            border:'1px solid white',
+          }
+    }
+
+    //styles to customize material ui component
+     const stylesAddToCart = {
+            display:'block', 
+            margin:'0 auto', 
+            width:'85%', 
+            mt: 2, mb: 2,
+            border:'1px solid white',
+            color:'white',
+            "&:hover": {
+            opacity: 0.8,
+            border:'1px solid white',
+    }
+  }
 
     return <>
         <Stack sx={{justifyContent:'center', marginTop: '20px'}} direction="row" spacing={2}>
-            <Button onClick={remove} variant="outlined" disabled={(prop.stock === 0) || (counter === 0)}>-</Button>
-            <span className="counter">{counter}</span>
-            <Button onClick={onAdd} variant="outlined" disabled={(prop.stock === 0) || (counter >= prop.stock)}>+</Button>
+            <Button onClick={remove} variant="outlined" sx={stylesCounter} disabled={(prop.stock === 0) || (counter === 0)}>-</Button>
+            <span className={prop.stock === 0 ? 'noStock counter' : 'counter' }>{ counter }</span>
+            <Button onClick={onAdd} variant="outlined" sx={stylesCounter} disabled={(prop.stock === 0) || (counter >= prop.stock)}>+</Button>
         </Stack>
+        <Button sx = { stylesAddToCart } variant="outlined" disabled={ prop.stock === 0 }>
+            Add to cart
+        </Button>
     </>;
     };
 

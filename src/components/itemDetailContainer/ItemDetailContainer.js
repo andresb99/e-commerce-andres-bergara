@@ -23,9 +23,6 @@ const ItemDetailContainer = () => {
     }, [])
 
 
-    
-   
-
   return <div style={{textAlign:'center'}}>
         
         {

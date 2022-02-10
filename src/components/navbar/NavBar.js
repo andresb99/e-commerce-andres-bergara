@@ -28,6 +28,7 @@ const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -130,7 +131,18 @@ const NavBar = () => {
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
-            <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white'}} to='/products'> PRODUCTS </NavLink>
+            <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white'}} to='/category/videogames'>
+               GAMES 
+            </NavLink>
+          </Button>
+
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+            <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white'}} to='/category/peripherals'>
+              PERIPHERALS
+            </NavLink>
           </Button>
           
             <Button

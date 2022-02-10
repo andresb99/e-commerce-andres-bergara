@@ -13,11 +13,12 @@ const Router = () => {
       <BrowserRouter>
         <NavBar/>
         <Routes>
-            <Route path='/' element={<ItemListContainer greetings = {{greeting : 'Hello World! welcome to ', name : 'Home Page'}}/>} />
-            <Route path='/category' element={<ItemListContainer greetings = {{greeting : 'Hello World! welcome to ', name : 'ItemListContainer'}}/>} />
-            <Route path='/products' element={<ItemListContainer greetings = {{greeting : 'Hello World! welcome to ', name : 'ItemListContainer'}}/>} />
-            <Route path='/products/:id' element={<ItemDetailContainer/>} />
-            <Route path='/cart' element={<ItemListContainer greetings = {{greeting : 'Hello World! welcome to ', name :`Cart`}}/>} />
+            <Route path='/' element={<ItemListContainer/>} />
+            <Route path='/category' element={<ItemListContainer/>} />
+            <Route path='/category/:id' element={<ItemListContainer/>} />
+            <Route path='/item' element={<ItemListContainer/>} />
+            <Route path='/item/:id' element={<ItemDetailContainer/>} />
+            <Route path='/cart' element={<ItemListContainer/>} />
             <Route path='/games-reviews' element={<h1>Game reviews in progress</h1>} />
             <Route path='/blog' element={<h1>Blog in progress</h1>} />
             <Route path='*' element={<NotFound/>} />

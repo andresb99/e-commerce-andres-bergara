@@ -6,6 +6,10 @@
     background-color: #fafafa;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: #000000;
+    background-color: black;
     background-image: -webkit-linear-gradient(90deg,transparent,rgba(0, 0, 0, 0.4) 30%,transparent,transparent)
+}
+
+body{
+    background-color: #000000f0;;
 }
