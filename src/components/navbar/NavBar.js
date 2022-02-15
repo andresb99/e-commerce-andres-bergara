@@ -160,16 +160,14 @@ const NavBar = () => {
               </NavLink>
             </Button>
 
-
-          
-          <Button
-            onClick={handleCloseNavMenu}
-            sx={{ my: 2, display: 'block' }}
-          >
-            <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color:'white'}} to='/blog'>BLOG</NavLink>  
-          </Button>
-          
-
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white' }} to='/blog'>
+                BLOG 
+              </NavLink>
+            </Button>
 
           </Box>
 

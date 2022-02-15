@@ -40,7 +40,7 @@ const Item = ({ product }) => {
             </CardActionArea>
           </Link>
           
-          <ItemCount stock={ stock } initial={stock === 0 ? 0 : 1 } />
+          <ItemCount stock={ stock } onAdd = { () => {} } initial={stock === 0 ? 0 : 1 } />
           
         </Card>
       );
