@@ -10,7 +10,6 @@ import { getMock } from '../../products/mock'
 //import styles
 import './itemListContainer.css';
 
-
 const ItemListContainer = (props) => {
   
   const [data, setData] = useState([]);

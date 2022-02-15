@@ -1,5 +1,6 @@
-import { Box, Card, CardContent, Container, Grid, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Item from '../item/Item';
 
 //import components
@@ -11,12 +12,28 @@ import './itemDetail.css';
 
 const ItemDetail = ({ product, idParam }) => {
 
+    const [amount, setAmount] = useState(0)
+
     const item = product.find((items) => items.id === parseInt(idParam))
     const { title, price, stock, description, pictureUrl, related } = item;
 
     const relatedProducts = product.filter( (product) =>{
        return  product.id === related[0] || product.id === related[1] || product.id === related[2]
     })
+
+    const stylesAddToCart = {
+        display:'block', 
+        margin:'0 auto', 
+        width:'85%', 
+        mt: 4, mb: 2,
+        border:'1px solid white',
+        textDecoration: 'none',
+        color:'white',
+        "&:hover": {
+        opacity: 0.8,
+        border:'1px solid white',
+}
+}
 
   return <>
     <Container sx={{ mt: 10, mb: 10 }}>
@@ -42,11 +59,21 @@ const ItemDetail = ({ product, idParam }) => {
                             <Typography variant="h4" color='white' component="div">
                                 ${ price }
                             </Typography>
-                            <Typography color='white' variant="body2">
+                            <Typography sx={{ height:'125px' }} color='white' variant="body2">
                                 { description }<br />
                             </Typography>
                         </CardContent>
-                        <ItemCount color='white' stock={ stock } initial={ stock === 0 ? 0 : 1 } />
+                        
+                        {
+                            amount === 0 ?    
+                                <ItemCount color='white' stock={ stock } initial={ stock === 0 ? 0 : 1 } onAdd = { (count) => { setAmount(count) }} />
+                            :
+                                <Link style={{ textDecoration:'none', color:'black' }} to='/cart'>
+                                    <Button sx = { stylesAddToCart } variant="outlined" disabled={ stock === 0 || (amount === 0) }>
+                                        Buy Now {amount} products
+                                    </Button>
+                                </Link> 
+                        }
 
                     </Card>
                 </Box>  

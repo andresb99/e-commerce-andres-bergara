@@ -6,6 +6,7 @@ import ItemListContainer from '../components/itemListContainer/ItemListContainer
 import NavBar from '../components/navbar/NavBar';
 import ItemDetailContainer from '../components/itemDetailContainer/ItemDetailContainer';
 import NotFound from '../components/notFound/NotFound';
+import CartPlaceholder from '../components/cart/CartPlaceholder';
 
 
 const Router = () => {
@@ -18,7 +19,7 @@ const Router = () => {
             <Route path='/category/:id' element={<ItemListContainer/>} />
             <Route path='/item' element={<ItemListContainer/>} />
             <Route path='/item/:id' element={<ItemDetailContainer/>} />
-            <Route path='/cart' element={<ItemListContainer/>} />
+            <Route path='/cart' element={<CartPlaceholder/>} />
             <Route path='/games-reviews' element={<h1>Game reviews in progress</h1>} />
             <Route path='/blog' element={<h1>Blog in progress</h1>} />
             <Route path='*' element={<NotFound/>} />
