@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -8,7 +8,16 @@ import './itemcount.css'
 
 const ItemCount = (prop) => {
 
-    const [counter, setCounter] = useState(prop.initial)
+    const [counter, setCounter] = useState(prop.initial);
+
+
+    useEffect( () => {
+
+       if( prop.idParam ===! null){
+           setCounter(prop.initial) 
+       }
+       
+    }, [prop.idParam, prop.initial])
 
     const add = () => {
             setCounter(counter+1);
