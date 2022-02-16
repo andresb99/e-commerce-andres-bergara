@@ -18,6 +18,7 @@ const ItemDetailContainer = () => {
     useEffect(() => {
         getMock
             .then(res => {
+                
                 setData(res.find((items) => items.id === parseInt(id)))
                 
                 Object.entries(data).length > 0 && setRelated(res.filter((product) => {

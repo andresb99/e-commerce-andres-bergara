@@ -12,10 +12,8 @@ const ItemCount = (prop) => {
 
 
     useEffect( () => {
-
-       if( prop.idParam ===! null){
-           setCounter(prop.initial) 
-       }
+  
+        setCounter(prop.initial);
        
     }, [prop.idParam, prop.initial])
 

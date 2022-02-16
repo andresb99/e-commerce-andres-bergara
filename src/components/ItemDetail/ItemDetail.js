@@ -83,7 +83,7 @@ const ItemDetail = ({ product, idParam, productRelated }) => {
             </Grid>
 
             {
-            productRelated?.map((productsRelated, index) => <Grid key={index} item xs={12} sm={6} md={4}><Item key={index} product={productsRelated} /></Grid>)
+            productRelated?.map((productsRelated) => <Grid key={productsRelated.id} item xs={12} sm={6} md={4}><Item key={productsRelated.id} product={productsRelated} /></Grid>)
             } 
         
         </Grid>
