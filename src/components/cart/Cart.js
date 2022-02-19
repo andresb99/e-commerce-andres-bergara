@@ -5,7 +5,7 @@ import { CartContext } from '../context/CartContext';
 import CartItem from '../CartItem/CartItem'
 
 
-const CartPlaceholder = () => {
+const Cart = () => {
   
   const { clear } = useContext(CartContext);
   const { items } = useContext(CartContext);
@@ -64,4 +64,4 @@ const CartPlaceholder = () => {
   );
 };
 
-export default CartPlaceholder;
+export default Cart;
