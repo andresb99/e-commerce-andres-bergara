@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 import Item from '../item/Item';
 
 //import components
@@ -12,14 +13,20 @@ import './itemDetail.css';
 
 const ItemDetail = ({ product, idParam, productRelated }) => {
 
+    const { addItem } = useContext(CartContext);
+
     const [amount, setAmount] = useState(0)
-    
+
     useEffect ( () => {
         setAmount(0)
     }, [idParam])
     
     const { title, price, stock, description, pictureUrl } = product;
-
+    
+    const handleAddToCart = () => {
+        addItem({product, amount})
+      };
+      
     const stylesAddToCart = {
         display:'block', 
         margin:'0 auto', 
@@ -68,7 +75,7 @@ const ItemDetail = ({ product, idParam, productRelated }) => {
                                 <ItemCount color='white' idParam = { idParam } stock={ stock } initial={ stock === 0 ? 0 : 1 } onAdd = { (count) => { setAmount(count) }} />
                             :
                                 <Link style={{ textDecoration:'none', color:'black' }} to='/cart'>
-                                    <Button sx = { stylesAddToCart } variant="outlined" disabled={ stock === 0 || (amount === 0) }>
+                                    <Button sx = { stylesAddToCart } onClick={handleAddToCart} variant="outlined" disabled={ stock === 0 || (amount === 0) }>
                                         Buy Now {amount} products
                                     </Button>
                                 </Link> 

@@ -1,5 +1,6 @@
 //import styles
 import './App.css';
+import { CartProvider } from './components/context/CartContext';
 
 //import components
 import Router from './router/Router'
@@ -7,7 +8,9 @@ import Router from './router/Router'
 function App() {
   return (
     <div >
-      <Router/>
+      <CartProvider>
+        <Router/>
+      </CartProvider>
     </div>
   );
 }

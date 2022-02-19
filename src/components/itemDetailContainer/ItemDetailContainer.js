@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
 
+    
 
     const [data, setData] = useState({});
     const [related, setRelated] = useState([]);
