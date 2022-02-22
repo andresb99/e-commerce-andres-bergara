@@ -12,9 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink, Link } from 'react-router-dom';
-
-//import components
 import CartWidget from '../cart-widget/CartWidget';
+
+
 
 //styles
 import './navbar.css';
@@ -27,8 +27,7 @@ const settings = ['Profile', 'Account', 'Logout'];
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -173,10 +172,10 @@ const NavBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             
-            <Link to='/cart' >
-              <IconButton sx={{ display: { xs: 'none', md: 'inline-block' }, marginRight:{md: 5}}} >
-                <CartWidget  />
-              </IconButton>
+            <Link to='/cart' >  
+                <IconButton sx={{ display: { xs: 'none', md: 'inline-block' }, marginRight:{md: 5}}} >
+                  <CartWidget  />
+               </IconButton>
             </Link>  
               
             <Tooltip title="Open settings">

@@ -6,11 +6,8 @@ import CartItem from '../CartItem/CartItem'
 
 
 const Cart = () => {
-  
-  const { clear } = useContext(CartContext);
-  const { items } = useContext(CartContext);
-  const { removeItem } = useContext(CartContext);
 
+  const { removeItem, items, clear, price } = useContext(CartContext);
 
   const handleClear = () => {
     clear()
@@ -37,12 +34,12 @@ const Cart = () => {
 
             <Grid item xs={12} sm={4}>
                 <Box>
-                    <Card sx={{ minWidth: 275, height: 429, backgroundColor:'black', color:'white' }}>
-                        <CardContent>
-                            <Typography sx={{textAlign:'center'}} color='white' variant="h3" component="div">
-                                CART
-                            </Typography>
-                            
+                    <Card sx={{ minWidth: 275, height: 429, backgroundColor:'black', color:'white', p:2 }}>
+                    <Typography sx={{textAlign:'center'}} color='white' variant="h3" component="div">
+                        CART
+                    </Typography>
+                        <CardContent sx={{overflow:'auto', height:'250px'}}>
+
                             { items?.map( item => {
                               const { id, title, price, stock} = item.currentItem.product 
                               const amount = item.currentItem.amount
@@ -52,12 +49,16 @@ const Cart = () => {
                               })
                             } 
                         </CardContent>
+                        <Typography sx={{borderTop:'1px solid white', pt:2, pl:1 ,position:'relative',}} variant="h4" color="white" component="div">
+                            TOTAL: ${price}
+                        </Typography>
                     </Card>
+                    { items.length === 0 ? null : <Button sx={{mt:1}} variant="outlined" onClick={handleClear}>Clear</Button> }
                 </Box>  
             </Grid>
-            
+                    
         </Grid>
-        { items.length === 0 ? null : <Button variant="outlined" onClick={handleClear}>Clear</Button> }
+        
     </Container>
 
     </>

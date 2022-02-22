@@ -26,20 +26,14 @@ const ItemDetail = ({ product, idParam, productRelated }) => {
     const handleAddToCart = () => {
         addItem({product, amount})
       };
-      
-    const stylesAddToCart = {
+
+    const stylesBuyNow = {
         display:'block', 
         margin:'0 auto', 
         width:'85%', 
         mt: 4, mb: 2,
-        border:'1px solid white',
-        textDecoration: 'none',
-        color:'white',
-        "&:hover": {
-        opacity: 0.8,
-        border:'1px solid white',
-}
-}
+        textDecoration: 'none'
+    }
 
   return <>
     <Container sx={{ mt: 10, mb: 10 }}>
@@ -75,8 +69,8 @@ const ItemDetail = ({ product, idParam, productRelated }) => {
                                 <ItemCount color='white' idParam = { idParam } stock={ stock } initial={ stock === 0 ? 0 : 1 } onAdd = { (count) => { setAmount(count) }} />
                             :
                                 <Link style={{ textDecoration:'none', color:'black' }} to='/cart'>
-                                    <Button sx = { stylesAddToCart } onClick={handleAddToCart} variant="outlined" disabled={ stock === 0 || (amount === 0) }>
-                                        Buy Now {amount} products
+                                    <Button sx = { stylesBuyNow } color="success" onClick={handleAddToCart} variant="outlined" disabled={ stock === 0 || (amount === 0) }>
+                                        Buy Now
                                     </Button>
                                 </Link> 
                         }
@@ -86,7 +80,7 @@ const ItemDetail = ({ product, idParam, productRelated }) => {
             </Grid>
 
             <Grid item xs={12}>
-                <Typography variant="h2" sx={{textAlign:'left', fontWeight:'bold'}}>RELATED GAMES</Typography>
+                <Typography variant="h2" sx={{textAlign:'left', fontWeight:'bold', fontSize:'35px', backgroundColor:'black', color:'white', padding:'10px'}}>RELATED GAMES</Typography>
             </Grid>
 
             {
