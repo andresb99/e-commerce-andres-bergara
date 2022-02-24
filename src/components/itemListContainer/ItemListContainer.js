@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 
 //import components
 import ItemList from '../item-list/ItemList';
-import { getMock } from '../../products/mock'
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
+
 
 //import styles
 import './itemListContainer.css';
@@ -17,10 +18,26 @@ const ItemListContainer = (props) => {
   const { id } = useParams();
 
   useEffect(() => {
-      getMock
-          .then( res => setData(res.filter( (product) => id ? product.category === id : product )))
-          .catch( err => console.log(err) )
-          .finally( () => setLoading(false) )       
+
+      const db = getFirestore();
+
+      const itemsCollection = id ? query(
+        collection(db,'items'),      
+        where("category", "==", id)    
+      ) : 
+      collection(db,'items')
+
+      getDocs(itemsCollection).then( (snapshot) => {
+        setData(
+          snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+          }))
+      )}  
+      )
+      .catch(err => console.log(err))
+      .finally( () => setLoading(false) )
+
   }, [id])
 
   return <>

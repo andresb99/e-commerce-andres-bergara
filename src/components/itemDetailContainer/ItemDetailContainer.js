@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getMock } from '../../products/mock';
 
 //import components
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { CircularProgress } from '@mui/material';
 import { useParams } from 'react-router-dom';
-
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 const ItemDetailContainer = () => {
-
-    
 
     const [data, setData] = useState({});
     const [related, setRelated] = useState([]);
@@ -17,20 +14,22 @@ const ItemDetailContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        getMock
-            .then(res => {
-                
-                setData(res.find((items) => items.id === parseInt(id)))
-                
-                Object.entries(data).length > 0 && setRelated(res.filter((product) => {
-                    return product.id === data.related[0] || product.id === data.related[1] || product.id === data.related[2]
+
+        const db = getFirestore();
+
+        const docRef = doc(db, "items", id)
+
+        getDoc(docRef)
+            .then((snapshot) => {
+                setData({
+                    id: snapshot.id,
+                    ...snapshot.data()
                 })
-                )
             })
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
 
-    }, [id, data])
+    }, [id])
 
 
     return <div style={{ textAlign: 'center' }}>

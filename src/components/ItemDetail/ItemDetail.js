@@ -2,6 +2,7 @@ import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mu
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import InProgress from '../inProgress/InProgress';
 import Item from '../item/Item';
 
 //import components
@@ -84,7 +85,10 @@ const ItemDetail = ({ product, idParam, productRelated }) => {
             </Grid>
 
             {
-            productRelated?.map((productsRelated) => <Grid key={productsRelated.id} item xs={12} sm={6} md={4}><Item key={productsRelated.id} product={productsRelated} /></Grid>)
+               productRelated.length > 0 ? 
+               productRelated.map((productsRelated) => <Grid key={productsRelated.id} item xs={12} sm={6} md={4}><Item key={productsRelated.id} product={productsRelated} /></Grid> )
+               :
+               <InProgress name="Related Products" />
             } 
         
         </Grid>
