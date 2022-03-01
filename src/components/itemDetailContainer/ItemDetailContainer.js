@@ -9,7 +9,6 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 const ItemDetailContainer = () => {
 
     const [data, setData] = useState({});
-    const [related, setRelated] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
 
@@ -35,7 +34,7 @@ const ItemDetailContainer = () => {
     return <div style={{ textAlign: 'center' }}>
 
         {
-            loading ? <CircularProgress /> : <ItemDetail idParam={id} product={data} productRelated={related} />
+            loading ? <CircularProgress /> : <ItemDetail idParam={id} product={data} />
         }
     </div>;
 };

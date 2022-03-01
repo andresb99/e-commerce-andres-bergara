@@ -2,20 +2,23 @@ import { Button, Card, CardContent, Container, Grid, Typography } from "@mui/mat
 import { Box } from "@mui/system";
 import React, { useContext } from "react";
 import { CartContext } from '../context/CartContext';
-import CartItem from '../CartItem/CartItem'
+import CartItem from '../CartItem/CartItem';
+import ModalCart from '../modalCart/ModalCart';
 
 
 const Cart = () => {
 
-  const { removeItem, items, clear, price } = useContext(CartContext);
+  const { removeItem, items, clear, price, order } = useContext(CartContext);
 
   const handleClear = () => {
     clear()
   }
 
+  
+
   return (
     <>
-      
+
       <Container sx={{ mt: 10, mb: 10 }}>
         <Grid container spacing={2}>
             <Grid item xs={12} sm={8}>
@@ -43,15 +46,16 @@ const Cart = () => {
                             { items?.map( item => {
                               const { id, title, price, stock} = item.currentItem.product 
                               const amount = item.currentItem.amount
-                              return <Typography key={id} id={id} title = {title} price = {price} stock = {stock} amount = {amount} variant="h6" color="white" component="div">
-                                    {title}: ${price*amount}
+                              return <Typography key={id} id={id} title = { title } price = { price } stock = { stock } amount = { amount } variant="h6" color="white" component="div">
+                                    { title }: ${ price*amount }
                                 </Typography>
                               })
                             } 
                         </CardContent>
                         <Typography sx={{borderTop:'1px solid white', pt:2, pl:1 ,position:'relative',}} variant="h4" color="white" component="div">
-                            TOTAL: ${price}
+                            TOTAL: ${ price }
                         </Typography>
+                        <ModalCart total= { price }/>
                     </Card>
                     { items.length === 0 ? null : <Button sx={{mt:1}} variant="outlined" onClick={handleClear}>Clear</Button> }
                 </Box>  
@@ -59,7 +63,7 @@ const Cart = () => {
                     
         </Grid>
         
-    </Container>
+      </Container>
 
     </>
   );

@@ -15,7 +15,7 @@ import InProgress from '../components/inProgress/InProgress';
 
 const Router = () => {
 
-  const { totalQuantity } = useContext(CartContext);
+  const { totalQuantity, order } = useContext(CartContext);
 
   return <div>
       <BrowserRouter>
@@ -26,7 +26,8 @@ const Router = () => {
             <Route path='/category/:id' element={<ItemListContainer/>} />
             <Route path='/item' element={<ItemListContainer/>} />
             <Route path='/item/:id' element={<ItemDetailContainer/>} />
-            <Route path='/cart' element={totalQuantity === 0 ? <NotCartItems /> : <Cart/>} />
+            <Route path='/success' element={ <NotCartItems title={'Congratulations !'} subtitle={'The purchase was successful'} />} />
+            <Route path='/cart' element={totalQuantity === 0 ? <NotCartItems title={'There is a cart to fill !'} subtitle={'You currently have no products in your cart.'} /> : <Cart/>} />
             <Route path='/games-reviews' element={<InProgress name={'GAMES REVIEWS'} />} />
             <Route path='/blog' element={<InProgress name={'BLOG'} />} />
             <Route path='*' element={<NotFound/>} />

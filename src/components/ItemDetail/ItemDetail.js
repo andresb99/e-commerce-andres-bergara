@@ -2,11 +2,10 @@ import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mu
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import InProgress from '../inProgress/InProgress';
-import Item from '../item/Item';
 
 //import components
 import ItemCount from '../itemCount/ItemCount';
+import RelatedProductsContainer from '../relatedProductsContainer/RelatedProductsContainer';
 
 //import styles
 import './itemDetail.css';
@@ -81,16 +80,13 @@ const ItemDetail = ({ product, idParam, productRelated }) => {
             </Grid>
 
             <Grid item xs={12}>
-                <Typography variant="h2" sx={{textAlign:'left', fontWeight:'bold', fontSize:'35px', backgroundColor:'black', color:'white', padding:'10px'}}>RELATED GAMES</Typography>
+                <Typography variant="h2" sx={{textAlign:'left', fontWeight:'bold', fontSize:'35px', backgroundColor:'black', color:'white', padding:'10px'}}>
+                    RELATED GAMES
+                </Typography>
             </Grid>
+   
+            <RelatedProductsContainer related = {product.related} /> 
 
-            {
-               productRelated.length > 0 ? 
-               productRelated.map((productsRelated) => <Grid key={productsRelated.id} item xs={12} sm={6} md={4}><Item key={productsRelated.id} product={productsRelated} /></Grid> )
-               :
-               <InProgress name="Related Products" />
-            } 
-        
         </Grid>
     </Container>
     
