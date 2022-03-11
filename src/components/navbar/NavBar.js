@@ -172,8 +172,8 @@ const NavBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             
-            <Link to='/cart' >  
-                <IconButton sx={{ display: { xs: 'none', md: 'inline-block' }, marginRight:{md: 5}}} >
+            <Link  className='cart' to='/cart' >  
+                <IconButton sx={{ display: { xs: 'inline-block', md: 'inline-block' }, marginRight:{md: 5}}} >
                   <CartWidget  />
                </IconButton>
             </Link>  

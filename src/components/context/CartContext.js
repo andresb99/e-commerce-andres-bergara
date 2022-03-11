@@ -27,7 +27,7 @@ export const CartProvider = ({ children }) => {
         updateCard[index].currentItem.amount += currentItem.amount;
 
       }else{ 
-        alert('not enough stock')
+        alert('Not enought stock')
       }
 
       setItems(updateCard);
@@ -35,12 +35,12 @@ export const CartProvider = ({ children }) => {
   };
 
 
-  const addOrderId = (orderID) => {
-    setOrder(orderID)
-  }
-
   const clear = () => {
     setItems([])
+  }
+
+  const orderNumber = (id) => {
+    setOrder(id);
   }
 
   const isInCart = (itemNuevo) => {
@@ -86,7 +86,7 @@ export const CartProvider = ({ children }) => {
       removeItem,
       totalQuantity,
       price,
-      addOrderId,
+      orderNumber,
       order
     }}
     >

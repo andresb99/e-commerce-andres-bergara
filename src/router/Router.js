@@ -8,8 +8,10 @@ import ItemDetailContainer from '../components/itemDetailContainer/ItemDetailCon
 import NotFound from '../components/notFound/NotFound';
 import Cart from '../components/cart/Cart';
 import { CartContext } from '../components/context/CartContext';
-import NotCartItems from '../components/NotCartItems/NotCartItems';
+import BoxMessage from '../components/NotCartItems/BoxMessage';
 import InProgress from '../components/inProgress/InProgress';
+import Home from '../components/home/Home';
+import Footer from '../components/footer/Footer';
 
 
 
@@ -21,17 +23,18 @@ const Router = () => {
       <BrowserRouter>
         <NavBar/>
         <Routes>
-            <Route path='/' element={<ItemListContainer/>} />
+            <Route path='/' element={<Home/>} />
             <Route path='/category' element={<ItemListContainer/>} />
             <Route path='/category/:id' element={<ItemListContainer/>} />
             <Route path='/item' element={<ItemListContainer/>} />
             <Route path='/item/:id' element={<ItemDetailContainer/>} />
-            <Route path='/success' element={ <NotCartItems title={'Congratulations !'} subtitle={'The purchase was successful'} />} />
-            <Route path='/cart' element={totalQuantity === 0 ? <NotCartItems title={'There is a cart to fill !'} subtitle={'You currently have no products in your cart.'} /> : <Cart/>} />
+            <Route path='/success' element={ <BoxMessage order={order} title={'Congratulations !'} subtitle={'The purchase was successful'} />} />
+            <Route path='/cart' element={totalQuantity === 0 ? <BoxMessage title={'There is a cart to fill !'} subtitle={'You currently have no products in your cart.'} /> : <Cart/>} />
             <Route path='/games-reviews' element={<InProgress name={'GAMES REVIEWS'} />} />
             <Route path='/blog' element={<InProgress name={'BLOG'} />} />
             <Route path='*' element={<NotFound/>} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
   </div>;
 };
