@@ -4,30 +4,28 @@ import { Link } from 'react-router-dom';
 
 const NotCartItems = ({ title, subtitle, order }) => {
 
-    const stylesButton = {
-      border: '1px solid #9c27b0',
-      color: '#9c27b0',
-      "&:hover": {
-        opacity: 0.8,
-        border:'1px solid #9c27b0'
-      }
+  const stylesButton = {
+    border: '1px solid #9c27b0',
+    color: '#9c27b0',
+    "&:hover": {
+      opacity: 0.8,
+      border: '1px solid #9c27b0'
     }
+  }
 
-    console.log(order)
+  return <>
+    <Container maxWidth="lg">
+      <Box sx={{ bgcolor: 'black', height: { sx: '60vh', md: '40vh' }, border: '1px solid #9c27b0', mt: 2 }}>
+        <Typography sx={{ p: 10, fontSize: '50px' }} variant='h3' color="white" gutterBottom>
+          {title}<br />
+          <span style={{ fontSize: '19px' }}>{subtitle}</span><br />
+          {order && <span style={{ fontSize: '19px' }}>Your Order ID is : {order}<br /></span>}
+          <Link style={{ textDecoration: 'none' }} to='/category'>
+            <Button sx={stylesButton} variant='outlined'>see more products</Button>
+          </Link>
 
-    return <>
-    <Container  maxWidth="lg">
-        <Box sx={{ bgcolor: 'black', height: {sx:'60vh' , md:'40vh' }, border:'1px solid #9c27b0', mt:2 }}>
-          <Typography sx={{p:10, fontSize:'50px'}} variant='h3'  color="white" gutterBottom>
-            {title}<br/>
-            <span style={{fontSize:'19px'}}>{subtitle}</span><br/>
-            {order && <span style={{fontSize:'19px'}}>Your Order ID is : {order}<br/></span>}
-            <Link style={{textDecoration:'none'}} to='/category'>
-              <Button sx={stylesButton} variant='outlined'>see more products</Button>
-            </Link>
-
-          </Typography>
-        </Box>
+        </Typography>
+      </Box>
     </Container>
   </>;
 }

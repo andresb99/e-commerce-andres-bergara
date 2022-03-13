@@ -9,33 +9,33 @@ const RelatedProductsContainer = ({ related }) => {
 
     const [relatedProducts, setRelatedProducts] = useState([]);
     const { id } = useParams();
-    
+
     useEffect(() => {
 
         const db = getFirestore();
-        
-          related.forEach(productId => {
+
+        related.forEach(productId => {
             const docRef = doc(db, "items", productId)
-            getDoc(docRef).then((snapshot)=>{
-                setRelatedProducts(prevState => ([ 
-                    ...prevState, 
-                    { id: snapshot.id , ...snapshot.data() } 
+            getDoc(docRef).then((snapshot) => {
+                setRelatedProducts(prevState => ([
+                    ...prevState,
+                    { id: snapshot.id, ...snapshot.data() }
                 ]));
             })
-            .catch(err => console.log(err));
+                .catch(err => console.log(err));
         });
-          
 
-    }, [id,related])
 
-  return <>
-    {       
-            relatedProducts.length > 3 ? 
-            
-            <InProgress name="Related Products" /> :
-            
-            <RelatedProducts relatedProducts = {relatedProducts} />
-    }
+    }, [id, related])
+
+    return <>
+        {
+            relatedProducts.length > 3 ?
+
+                <InProgress name="Related Products" /> :
+
+                <RelatedProducts relatedProducts={relatedProducts} />
+        }
     </>
 
 }

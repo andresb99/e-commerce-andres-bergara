@@ -9,7 +9,7 @@ import { CardActionArea } from '@mui/material';
 // import components 
 import ItemCount from '../itemCount/ItemCount';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../../context/CartContext';
 import { Button } from '@mui/material';
 const Item = ({ product }) => {
 
@@ -58,7 +58,7 @@ const Item = ({ product }) => {
           <ItemCount stock={stock} onAdd={(count) => { setAmount(count) }} initial={stock === 0 ? 0 : 1} />
           :
           <>
-            <h3 style={{ fontSize: '20px', marginTop: '32.5px' }}>Want to add <span style={{color:'#2e7d32'}}>{amount}</span> products to cart?</h3>
+            <h3 style={{ fontSize: '20px', marginTop: '32.5px' }}>Want to add <span style={{ color: '#2e7d32' }}>{amount}</span> products to cart?</h3>
             <Link style={{ textDecoration: 'none', color: 'black' }} to='/cart'>
               <Button sx={stylesBuyNow} color="success" onClick={handleAddToCart} variant="outlined" disabled={stock === 0 || (amount === 0)}>
                 Buy Now

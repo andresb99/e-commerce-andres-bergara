@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
-import { CartContext } from '../context/CartContext';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { CircularProgress, TextField } from '@mui/material';
+import { CartContext } from '../../context/CartContext';
+import { addDoc, collection, doc, getFirestore, writeBatch } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { GrFormClose } from 'react-icons/gr';
 
@@ -31,44 +31,54 @@ const ModalCart = ({ total }) => {
   };
 
   const { items, clear, orderNumber } = useContext(CartContext);
-
+  const [loading, setLoading] = useState(false)
 
   const [buyer, setBuyer] = useState({
     name: '',
     email: '',
+    confirmEmail: '',
     phone: ''
   })
   const [orderId, setOrderId] = useState(null);
   const stylesButtonCart = {
-    display: 'block', 
+    display: 'block',
     margin: '0 auto',
     width: '95%',
     mt: 3,
-    color:'#9c27b0',
-    border:'1px solid #9c27b0',
+    color: '#9c27b0',
+    border: '1px solid #9c27b0',
     "&:hover": {
       opacity: 0.8,
-      border:'1px solid #9c27b0',
-      boxShadow: '1px 0px 27px 2px rgba(156,39,176,0.75)'
+      border: '1px solid #9c27b0',
+      boxShadow: '1px 0px 10px 2px rgba(156,39,176,0.75)'
     }
   }
 
   const stylesCloseModal = {
-    position:"relative",
-    top:'-25px',
-    left:'170px',
-    fontSize:'25px',
-    cursor:'pointer'
+    position: "relative",
+    top: '-25px',
+    left: '170px',
+    fontSize: '25px',
+    cursor: 'pointer'
   }
 
-  let date = new Date();
+  const stylesInputs = {
+    color: 'white!important',
+    marginBottom: '15px',
+    width: '100%',
+  }
+
   const sendOrder = () => {
+
+    let date = new Date();
     const order = {
       buyer,
       items,
       total,
       date
     }
+
+    setLoading(true);
 
     const db = getFirestore();
 
@@ -82,13 +92,34 @@ const ModalCart = ({ total }) => {
       })
       .catch((err) => console.log(err))
       .finally(() => {
+        setLoading(false);
         navigate('/success');
+        updateItem();
       })
 
-      
+
   }
 
-  useEffect( () => {
+  const updateItem = () => {
+
+    const db = getFirestore();
+    const batch = writeBatch(db);
+
+    items.forEach((item) => {
+
+      const { amount } = item.currentItem;
+      const { stock, id } = item.currentItem.product;
+      const docRef = doc(db, "items", id);
+
+      batch.update(docRef, { stock: stock - amount })
+
+    });
+
+    batch.commit();
+
+  }
+
+  useEffect(() => {
     orderNumber(orderId);
   }, [orderId, orderNumber])
 
@@ -118,10 +149,10 @@ const ModalCart = ({ total }) => {
                   }
                 }}
                 color='secondary'
-                sx={{ color: 'white!important' }}
-                helperText="Please enter your name"
+                sx={stylesInputs}
+                helperText="Please enter your name and lastname"
                 id="demo-helper-text-aligned"
-                label="Name"
+                label="Name and Lastname"
                 value={buyer.name}
                 onChange={(e) => {
                   setBuyer({
@@ -131,12 +162,14 @@ const ModalCart = ({ total }) => {
                 }}
               />
               <TextField
+                required
                 color='secondary'
                 InputProps={{
                   style: {
                     color: '#9c27b0',
                   }
                 }}
+                sx={stylesInputs}
                 helperText="Please enter your email"
                 id="demo-helper-text-aligned-no-helper"
                 label="Email"
@@ -150,15 +183,39 @@ const ModalCart = ({ total }) => {
                 }}
               />
               <TextField
+                required
                 color='secondary'
                 InputProps={{
                   style: {
                     color: '#9c27b0',
                   }
                 }}
-                helperText="Please enter your email"
+                sx={stylesInputs}
+                helperText="Please confirm your email"
+                id="demo-helper-text-aligned-no-helper"
+                label="Confirm Email"
+                type='email'
+                value={buyer.confirmEmail}
+                onChange={(e) => {
+                  setBuyer({
+                    ...buyer,
+                    confirmEmail: e.target.value
+                  })
+                }}
+              />
+              <TextField
+                required
+                color='secondary'
+                InputProps={{
+                  style: {
+                    color: '#9c27b0',
+                  }
+                }}
+                sx={stylesInputs}
+                helperText="Please enter your phone"
                 id="demo-helper-text-aligned-no-helper"
                 label="Phone"
+                type='phone'
                 value={buyer.phone}
                 onChange={(e) => {
                   setBuyer({
@@ -170,7 +227,7 @@ const ModalCart = ({ total }) => {
               <Button sx={{
                 display: 'block',
                 margin: '0 auto',
-                width: '85%',
+                width: '100%',
                 mt: 2, mb: 2,
                 border: '1px solid #9c27b0',
                 color: '#9c27b0',
@@ -178,11 +235,11 @@ const ModalCart = ({ total }) => {
                   opacity: 0.8,
                   border: '1px solid #9c27b0',
                 }
-               
+
               }}
                 variant='outlined' onClick={sendOrder}
-                disabled={!buyer.phone || !buyer.email || !buyer.name}>
-                  CHECKOUT
+                disabled={!buyer.phone || !buyer.email || !buyer.name || !(buyer.confirmEmail === buyer.email)}>
+                {loading ? <CircularProgress sx={{ color: '#9c27b0', mt: '10px !important', width: '20px !important', height: '20px !important' }} /> : "CHECKOUT"}
               </Button>
             </form>
           </Box>

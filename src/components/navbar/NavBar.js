@@ -27,7 +27,7 @@ const settings = ['Profile', 'Account', 'Logout'];
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -44,22 +44,22 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky" style={{backgroundColor:"black"}}>
+    <AppBar position="sticky" style={{ backgroundColor: "black" }}>
       <Container maxWidth="none">
         <Toolbar disableGutters>
-          <Link to="/" style={{ display:'flex', alignItems:'center', color: 'white', textDecoration:'none' }} >
-          <img src={logo} alt='logo' className="logo" />
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', color: 'white', textDecoration: 'none' }} >
+            <img src={logo} alt='logo' className="logo" />
             <Typography
               variant="h5"
               noWrap
-              style={{fontFamily:"'Anton', sans-serif"}}
+              style={{ fontFamily: "'Anton', sans-serif" }}
               component="div"
               sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
             >
               Heisenberg Games
             </Typography>
           </Link>
-          
+
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -90,33 +90,33 @@ const NavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <Link style={{textDecoration:'none'}} to='/category/videogames' >
+              <Link style={{ textDecoration: 'none' }} to='/category/videogames' >
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography  color='black'  textAlign="center">Games</Typography>
+                  <Typography color='black' textAlign="center">Games</Typography>
                 </MenuItem>
               </Link>
 
-              <Link style={{textDecoration:'none'}} to='/category/peripherals' >
+              <Link style={{ textDecoration: 'none' }} to='/category/peripherals' >
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography  color='black'  textAlign="center">Peripherals</Typography>
+                  <Typography color='black' textAlign="center">Peripherals</Typography>
                 </MenuItem>
               </Link>
 
-              <Link style={{textDecoration:'none'}} to='/games-reviews' >
+              <Link style={{ textDecoration: 'none' }} to='/games-reviews' >
                 <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography color='black' textAlign="center">Games Reviews</Typography>
+                  <Typography color='black' textAlign="center">Games Reviews</Typography>
                 </MenuItem>
               </Link>
 
-              <Link style={{textDecoration:'none'}} to='/blog' >
+              <Link style={{ textDecoration: 'none' }} to='/blog' >
                 <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography color='black' textAlign="center">Blog</Typography>
+                  <Typography color='black' textAlign="center">Blog</Typography>
                 </MenuItem>
               </Link>
 
-              <Link style={{textDecoration:'none'}} to='/cart'>
+              <Link style={{ textDecoration: 'none' }} to='/cart'>
                 <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography color='black' textAlign="center">Cart</Typography>
+                  <Typography color='black' textAlign="center">Cart</Typography>
                 </MenuItem>
               </Link>
             </Menu>
@@ -125,37 +125,19 @@ const NavBar = () => {
             variant="h6"
             noWrap
             component="div"
-            style={{fontFamily:"'Anton', sans-serif"}}
+            style={{ fontFamily: "'Anton', sans-serif" }}
             sx={{ flexGrow: 2, display: { xs: 'flex', md: 'none' } }}
           >
             Heisenberg Games
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          
-          <Button
-            onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: 'white', display: 'block' }}
-          >
-            <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white'}} to='/category/videogames'>
-               GAMES 
-            </NavLink>
-          </Button>
 
-          <Button
-            onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: 'white', display: 'block' }}
-          >
-            <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white'}} to='/category/peripherals'>
-              PERIPHERALS
-            </NavLink>
-          </Button>
-          
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white' }} to='/games-reviews'>
-                GAMES REVIEWS 
+              <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{ textDecoration: 'none', color: 'white' }} to='/category/videogames'>
+                GAMES
               </NavLink>
             </Button>
 
@@ -163,27 +145,45 @@ const NavBar = () => {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{textDecoration:'none', color: 'white' }} to='/blog'>
-                BLOG 
+              <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{ textDecoration: 'none', color: 'white' }} to='/category/peripherals'>
+                PERIPHERALS
+              </NavLink>
+            </Button>
+
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{ textDecoration: 'none', color: 'white' }} to='/games-reviews'>
+                GAMES REVIEWS
+              </NavLink>
+            </Button>
+
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              <NavLink className={({ isActive }) => isActive ? "activeClass" : undefined} style={{ textDecoration: 'none', color: 'white' }} to='/blog'>
+                BLOG
               </NavLink>
             </Button>
 
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            
-            <Link  className='cart' to='/cart' >  
-                <IconButton sx={{ display: { xs: 'inline-block', md: 'inline-block' }, marginRight:{md: 5}}} >
-                  <CartWidget  />
-               </IconButton>
-            </Link>  
-              
+
+            <Link className='cart' to='/cart' >
+              <IconButton sx={{ display: { xs: 'inline-block', md: 'inline-block' }, marginRight: { md: 5 } }} >
+                <CartWidget />
+              </IconButton>
+            </Link>
+
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Gatito" src={profileImg} />
               </IconButton>
             </Tooltip>
-            
+
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

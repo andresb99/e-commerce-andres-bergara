@@ -13,7 +13,7 @@ const CartItem = ({ removeItem, id, title, price, stock, amount, pictureUrl }) =
 
   const handleRemoveItem = () => {
     let del = window.confirm(`Are you sure you want to remove ${title} from cart?`);
-    if(del){
+    if (del) {
       removeItem();
     }
   }
@@ -22,7 +22,11 @@ const CartItem = ({ removeItem, id, title, price, stock, amount, pictureUrl }) =
     fontSize: '25px',
     width: '82%',
     display: 'inline-block',
-    textShadow: "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #9c27b0, 0 0 30px #9c27b0, 0 0 40px #9c27b0, 0 0 55px #9c27b0, 0 0 75px #9c27b0;"
+    textShadow: "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #9c27b0, 0 0 30px #9c27b0, 0 0 40px #9c27b0, 0 0 55px #9c27b0, 0 0 75px #9c27b0;",
+    transition: '300ms',
+    "&:hover": {
+      color: '#9c27b0;'
+    }
   }
 
   return (

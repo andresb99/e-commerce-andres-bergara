@@ -12,21 +12,21 @@ export const CartProvider = ({ children }) => {
 
     const index = isInCart(currentItem);
 
-    if (index === -1){
+    if (index === -1) {
 
-      setItems([...items, {currentItem}]);
+      setItems([...items, { currentItem }]);
 
-    }else{
+    } else {
 
       let updateCard = [...items];
 
-      const {amount, product} = updateCard[index].currentItem
+      const { amount, product } = updateCard[index].currentItem
 
-      if((amount + currentItem.amount) <= product.stock){
+      if ((amount + currentItem.amount) <= product.stock) {
 
         updateCard[index].currentItem.amount += currentItem.amount;
 
-      }else{ 
+      } else {
         alert('Not enought stock')
       }
 
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
 
   const isInCart = (itemNuevo) => {
 
-    const item = items.find( item => item.currentItem.product.id === itemNuevo.product.id);
+    const item = items.find(item => item.currentItem.product.id === itemNuevo.product.id);
 
     return items.indexOf(item);
   }
@@ -54,19 +54,19 @@ export const CartProvider = ({ children }) => {
 
     const index = isInCart(item)
 
-    items.splice(index,1)
+    items.splice(index, 1)
 
     setItems([...items])
   }
 
-  
+
   useEffect(() => {
 
     let totalCant = 0;
     let totalPrice = 0;
-    for(let i = 0 ; i<items.length; i++){
+    for (let i = 0; i < items.length; i++) {
       let cant = items[i]?.currentItem.amount;
-      let price = items[i]?.currentItem.amount*items[i]?.currentItem.product.price;
+      let price = items[i]?.currentItem.amount * items[i]?.currentItem.product.price;
 
       totalPrice = totalPrice + price;
       totalCant = totalCant + cant;
@@ -76,19 +76,20 @@ export const CartProvider = ({ children }) => {
     setPrice(totalPrice);
 
   }, [items])
-  
+
+
   return (
     <CartContext.Provider
-    value={{ 
-      items,
-      addItem,
-      clear,
-      removeItem,
-      totalQuantity,
-      price,
-      orderNumber,
-      order
-    }}
+      value={{
+        items,
+        addItem,
+        clear,
+        removeItem,
+        totalQuantity,
+        price,
+        orderNumber,
+        order
+      }}
     >
       {children}
     </CartContext.Provider>
