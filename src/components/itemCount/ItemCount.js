@@ -55,7 +55,7 @@ const ItemCount = (prop) => {
     return <>
         <Stack sx={{ justifyContent: 'center', marginTop: '20px' }} direction="row" spacing={2}>
             <Button onClick={remove} variant="outlined" sx={stylesCounter} disabled={(prop.stock === 0) || (counter === 0)}>-</Button>
-            <span className={prop.stock === 0 ? 'noStock counter' : 'counter'}>{counter}</span>
+            <span className={prop.stock === 0 || counter === 0 ? 'noStock' : 'counter'}>{counter}</span>
             <Button onClick={add} variant="outlined" sx={stylesCounter} disabled={(prop.stock === 0) || (counter >= prop.stock)}>+</Button>
         </Stack>
         <Button sx={stylesAddToCart} onClick={handleOnAdd} variant="outlined" disabled={prop.stock === 0 || (counter === 0)}>

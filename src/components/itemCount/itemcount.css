@@ -14,5 +14,6 @@
 }
 
 .noStock{
-    color: #d32f2f;
+    align-self: center;
+    color: #d32f2f!important;
 }
